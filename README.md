@@ -51,6 +51,8 @@ Detects vulnerable packages, misconfigurations, and secrets.
 
 6. Docker Compose Deployment
 
+## Jenkins File [Explanation](https://github.com/aryan-2026/3-Tier-DevSecOps-CI-CD-Project/blob/main/Jenkins%20file%20explanation)
+
 Deploys the application in detached mode using Docker Compose.
 
 ![Jenkins Pipeline](https://github.com/aryan-2026/3-Tier-DevSecOps-CI-CD-Project/blob/main/pipeline.png)
