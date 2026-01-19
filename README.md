@@ -65,9 +65,9 @@ Detects vulnerable packages, misconfigurations, and secrets.
 
 Deploys the application in detached mode using Docker Compose.
 
-![Jenkins Pipeline](https://raw.githubusercontent.com/username/repo/main/images/pipeline.png)
-![Stage View](https://raw.githubusercontent.com/username/repo/main/images/pipeline.png)
-![CI/CD Build](https://raw.githubusercontent.com/username/repo/main/images/pipeline.png)
+![Jenkins Pipeline](https://github.com/aryan-2026/3-Tier-DevSecOps-CI-CD-Project/blob/main/pipeline.png)
+![Stage View](https://github.com/aryan-2026/3-Tier-DevSecOps-CI-CD-Project/blob/main/stages.png)
+![CI/CD Build](https://github.com/aryan-2026/3-Tier-DevSecOps-CI-CD-Project/blob/main/build.png)
 
 
 ## Final Outcome
