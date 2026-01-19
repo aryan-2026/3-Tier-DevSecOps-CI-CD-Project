@@ -1,0 +1,109 @@
+## 1. Starting the Pipeline
+pipeline {
+    agent any
+}
+
+This simply tells Jenkins:
+
+“Run this pipeline on any available worker.”
+
+## 2. Setting Up SonarQube
+environment {
+    SONAR_HOME = tool "Sonar"
+}
+
+
+Instead of hardcoding paths, Jenkins manages tools for us.
+This makes the pipeline clean, portable, and professional.
+
+## 3. Cloning Code from GitHub
+git url: "https://github.com/krishnaacharyaa/wanderlust.git", branch: "devops"
+
+
+This is the first real action.
+
+Jenkins pulls the latest code so every pipeline run starts fresh.
+If the code isn’t here, nothing else matters.
+
+## 4. SonarQube Code Analysis (SAST)
+withSonarQubeEnv("Sonar") {
+    sh "$SONAR_HOME/bin/sonar-scanner \
+    -Dsonar.projectName=wanderlust \
+    -Dsonar.projectKey=wanderlust"
+}
+
+
+Here, Jenkins sends the code to SonarQube.
+
+SonarQube checks:
+
+Bugs
+
+Code smells
+
+Security vulnerabilities
+
+Hardcoded secrets
+
+Bad practices
+
+This is static analysis — meaning problems are found before anything runs.
+
+Think of it as a senior reviewer checking every line of code automatically.
+
+## 5. Scanning Dependencies (OWASP Dependency Check)
+dependencyCheck additionalArguments: '--scan ./'
+
+
+This step is very important.
+
+Most breaches happen because of vulnerable libraries, not bad code.
+
+This scan:
+
+Checks all third-party dependencies
+
+Matches them against CVE databases
+
+Generates a security report
+
+It protects you from disasters like Log4Shell.
+
+## 6. Quality Gate Check
+waitForQualityGate abortPipeline: false
+
+
+After SonarQube finishes scanning, Jenkins waits for the verdict.
+
+If quality is bad, you know immediately.
+This step acts like a security checkpoint before deployment.
+
+## 7. Trivy Filesystem Scan
+trivy fs --format table -o trivy-fs-report.html .
+
+
+Now the pipeline scans the entire project directory.
+
+Trivy looks for:
+
+Vulnerable packages
+
+Misconfigurations
+
+Secrets
+
+It’s a simple step, but it adds another strong layer of protection.
+
+## 8. Deploying the Application
+docker-compose up -d
+
+
+Finally, if everything looks good, the application is deployed.
+
+Docker Compose:
+
+Starts all services
+
+Runs containers in background
+
+Makes deployments predictable and consistent
