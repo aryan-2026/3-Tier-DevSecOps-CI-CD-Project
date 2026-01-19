@@ -11,19 +11,7 @@ A complete hands-on DevSecOps project demonstrating how to build a secure CI/CD 
 6. Deploys the application using Docker Compose  
 
 ## Pipeline Flow
-GitHub Repository
-↓
-Jenkins Pipeline
-↓
-SonarQube (SAST)
-↓
-OWASP Dependency Check (SCA)
-↓
-Quality Gate Validation
-↓
-Trivy Filesystem Scan
-↓
-Docker Compose Deployment
+GitHub Repository -> Jenkins Pipeline -> SonarQube (SAST) -> OWASP Dependency Check (SCA) -> Quality Gate Validation -> Trivy Filesystem Scan -> Docker Compose Deployment
 
 ## Prerequisites
 
